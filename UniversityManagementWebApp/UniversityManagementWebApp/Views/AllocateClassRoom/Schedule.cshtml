@@ -1,0 +1,55 @@
+﻿@using UniversityManagementWebApp.Models
+@using UniversityManagementWebApp.Models.Views
+@model Department
+@{
+    ViewBag.Title = "Schedule";
+    Layout = null;
+    List<Department> departments = ViewBag.Departments;
+    List<ClassRoomAllocationAndClassSchedule> classSchedules = ViewBag.classSchedule;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <label for="departmentDropDownList">Department</label>
+                </td>
+                <td>
+                    <select class="form-control" id="departmentDropDownList" name="Id">
+                        @foreach (Department department in departments)
+                        {
+                            <option value="@department.Id">@department.Code</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <table id="mahir" class="table-bordered table-responsive table-striped table-hover">
+            <thead>
+            <tr>
+                <td><b>Course Code</b></td>
+                <td><b>Name</b></td>
+                <td><b>Schedule Info</b></td>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/ClassRoomSchedule.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

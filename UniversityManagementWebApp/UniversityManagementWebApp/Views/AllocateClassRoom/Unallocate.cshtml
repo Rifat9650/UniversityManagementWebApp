@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Unallocate";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+    <input type="button" value="Unallocate Class Rooms" id="UnassignButton" class="btn btn-danger btn-large unassign-btn" />
+
+
+    <div id="Confirm">
+        <form class="form-horizontal post-form" method="POST">
+            <br />
+            <br />
+
+            Are you sure to Unallocate all Class Rooms?
+            <br />
+            <input type="submit" value="Yes" id="YesButton" class="btn btn-danger btn-large unassign-btn" />
+            <input type="button" value="No" id="NoButton" class="btn  btn-large unassign-btn" />
+
+
+
+        </form>
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Confirm").hide();
+
+            $("#UnassignButton").click(function () {
+                $("#Confirm").show();
+                $("#UnassignButton").hide();
+
+                $("#NoButton").click(function () {
+                    $("#UnassignButton").show();
+                    $("#Confirm").hide();
+                });
+
+            });
+        });
+
+
+    </script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+﻿@using UniversityManagementWebApp.Models
+@model IEnumerable<UniversityManagementWebApp.Models.Department>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+</head>
+<body>
+    <table border="2">
+        <thead>
+            <tr>
+                <td><b>Code</b></td>
+                <td><b>Name</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Department department in Model)
+            {
+                <tr>
+                    <td>@department.Code</td>
+                    <td>@department.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+</html>
+

@@ -1,0 +1,118 @@
+﻿@using UniversityManagementWebApp.Models
+@model CourseAssign
+@{
+    ViewBag.Title = "Assign";
+    Layout = null;
+    List<Department> departments = ViewBag.Departments;
+    List<Teacher> teachers = ViewBag.Teachers;
+    List<Course> courses = ViewBag.Courses;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.DepartmentId)
+                </td>
+
+                <td>
+                    <select class="form-control" id="departmentDropDownList" name="DepartmentId">
+                        @foreach (Department department in departments)
+                        {
+                            <option value="@department.Id">@department.Code</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.DepartmentId)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.TeacherId)
+                </td>
+
+                <td>
+                    <select class="form-control" id="teacherDropDownList" name="TeacherId">
+                        <option value="0">--Select--</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.TeacherId)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="creditTextBox">Credit to be taken</label>
+                </td>
+
+                <td>
+                    <input type="text" id="creditTextBox" name="TotalCredit" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="remainingCreditTextBox">Remaining Credit</label>
+                </td>
+                <td>
+                    <input type="text" id="remainingCreditTextBox" name="RemainingCredit" readonly="readonly">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="courseCodeDropDownList">Course Code</label>
+                </td>
+                <td>
+                    <select class="form-control" id="courseCodeDropDownList" name="CourseId">
+                        <option value="0">--Select--</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.CourseId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="nameTextBox">Name</label>
+                </td>
+                <td>
+                    <input type="text" id="nameTextBox" name="CourseName" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="courseCreditTextBox">Credit</label>
+
+                </td>
+                <td>
+                    <input type="text" id="courseCreditTextBox" name="CourseCredit" readonly="readonly">
+                </td>
+            </tr>
+     
+            <tr>
+                <td></td>
+                <td>
+                    <button id="assign-btn" type="button" class="btn btn-info">Assign</button>
+                </td>
+            </tr>
+        </table>
+
+    }
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/CourseAssign.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

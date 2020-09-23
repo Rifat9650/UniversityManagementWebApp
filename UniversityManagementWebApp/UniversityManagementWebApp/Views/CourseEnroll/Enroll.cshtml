@@ -1,0 +1,119 @@
+﻿@using UniversityManagementWebApp.Models
+@model CourseEnroll
+@{
+    ViewBag.Title = "Enroll";
+    Layout = null;
+    List<Student> students = ViewBag.Students;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <form method="POST">
+        <table>
+
+            <tr>
+                <td>
+                    <label for="registrationNoDropDownList">Student Reg. No</label>
+                </td>
+                <td>
+                    <select class="form-control" id="registrationNoDropDownList" name="StudentId">
+                        <option value="0">--Select--</option>
+                        @foreach (var item in students)
+                        {
+                            <option value="@item.Id">@item.RegistrationNo</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.StudentId)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="nameTextBox">Name</label>
+                </td>
+                <td>
+                    <input type="text" id="nameTextBox" name="Name" readonly="readonly">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="emailTextBox">Email</label>
+                </td>
+                <td>
+                    <input type="text" id="emailTextBox" name="Email" readonly="readonly">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="departmentTextBox">Department</label>
+                </td>
+                <td>
+                    <input type="text" id="departmentTextBox" name="DepartmentName" readonly="readonly">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="courseDropDownList">Course</label>
+                </td>
+                <td>
+                    <select class="form-control" id="courseDropDownList" name="courseId">
+                        <option value="0">--Select Course--</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.CourseId)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="dateTextBox">Date</label>
+                </td>
+                <td>
+                    <input id="dateTextBox" name="Date">
+                    @Html.ValidationMessageFor(x => x.Date)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-info">Enroll</button>
+                </td>
+            </tr>
+        </table>
+
+        @if (ViewBag.Message != null)
+        {
+            <h3>@ViewBag.Message</h3>
+        }
+    </form>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/StudentCourseAssign.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+
+    <script>
+        $('#dateTextBox').datepicker({
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+
+</body>
+</html>

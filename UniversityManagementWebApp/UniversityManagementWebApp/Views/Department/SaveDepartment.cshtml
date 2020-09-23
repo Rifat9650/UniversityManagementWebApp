@@ -1,0 +1,62 @@
+﻿@using UniversityManagementWebApp.Models
+@model Department
+@{
+    ViewBag.Title = "SaveDepartment";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Name)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Name)
+                    @Html.ValidationMessageFor(x => x.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Code)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Code)
+                    @Html.ValidationMessageFor(x => x.Code)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Submit" class="btn btn-info"/>
+                </td>
+            </tr>
+
+        </table>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+</body>
+</html>
+

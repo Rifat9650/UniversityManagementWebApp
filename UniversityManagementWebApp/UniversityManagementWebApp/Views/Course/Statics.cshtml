@@ -1,0 +1,48 @@
+﻿@using UniversityManagementWebApp.Models
+@{
+    ViewBag.Title = "Statics";
+    Layout = null;
+    List<Department> departments = ViewBag.Departments;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <label for="departmentDropDownList">Department</label>
+            </td>
+            <td>
+                <select class="form-control" id="departmentDropDownList" name="Id">
+                    @foreach (Department department in departments)
+                    {
+                        <option value="@department.Id">@department.Code</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+    </table>
+    <table id="staticsTable" class="table-bordered table-responsive table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <td>Code</td>
+                <td>Name/Title</td>
+                <td>Semester</td>
+                <td>Assigned To</td>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/CourseStatics.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿@using UniversityManagementWebApp.Models
+@model Student
+@{
+    ViewBag.Title = "Save";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Name)
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.Name)
+                    @Html.ValidationMessageFor(x => x.Name)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Email)
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.Email)
+                    @Html.ValidationMessageFor(x => x.Email)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.ContactNo)
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.ContactNo)
+                    @Html.ValidationMessageFor(x => x.ContactNo)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Date)
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.Date)
+                    @Html.ValidationMessageFor(x => x.Date)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Address)
+                </td>
+
+                <td>
+                    @Html.TextAreaFor(x => x.Address)
+                    @Html.ValidationMessageFor(x => x.Address)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.DepartmentId)
+                </td>
+
+                <td>
+                    @Html.DropDownListFor(x => x.DepartmentId, new SelectList(ViewBag.Departments, "Value", "Text"))
+                    @Html.ValidationMessageFor(x => x.DepartmentId)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-info">Register</button>
+                </td>
+            </tr>
+        </table>
+    }
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $('#Date').datepicker({
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿@using UniversityManagementWebApp.Models
+@model AllocateClassRoom
+@{
+    ViewBag.Title = "Allocate";
+    Layout = null;
+    List<Department> departments = ViewBag.Departments;
+    List<Course> courses = ViewBag.Courses;
+    List<ClassRoom> rooms = ViewBag.ClassRooms;
+    List<string> days = ViewBag.Days;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.timepicker.min.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <label for="departmentDropDownList">Department</label>
+                </td>
+
+                <td>
+                    <select class="form-control" id="departmentDropDownList" name="DepartmentId">
+                        @foreach (Department department in departments)
+                        {
+                            <option value="@department.Id">@department.Code</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.DepartmentId)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="courseDropDownList">Course</label>
+                </td>
+
+                <td>
+                    <select class="form-control" id="courseDropDownList" name="CourseId">
+                        <option value="0">--Select--</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.CourseId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="roomDropDownList">Room No.</label>
+                </td>
+                <td>
+                    <select class="form-control" id="roomDropDownList" name="RoomId">
+                        <option value="0">--Select--</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.RoomId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="dayDropDownList">Day</label>
+                </td>
+                <td>
+                    <select class="form-control" id="dayDropDownList" name="Day">
+                        @foreach (string day in days)
+                        {
+                            <option value="@day">@day</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="fromTimeTextBox">From</label>
+                </td>
+                <td>
+                    <input type="text" id="fromTimeTextBox" name="FromTimeHour" />
+                    @Html.ValidationMessageFor(x => x.FromTimeHour)
+                    <label>
+                        <input type="radio" name="FromTimePeriod" id="amRadioForFromTime" value="AM"> AM
+                    </label>
+                    <label>
+                        <input type="radio" name="FromTimePeriod" id="pmRadioForFromTime" value="PM"> PM
+                    </label>
+                    <br />
+                    @Html.ValidationMessageFor(x => x.FromTimePeriod)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="toTimeTextBox">To</label>
+                </td>
+                <td>
+                    <input type="text" id="toTimeTextBox" name="ToTimeHour" />
+                    @Html.ValidationMessageFor(x => x.ToTimeHour)
+                    <label>
+                        <input type="radio" name="ToTimePeriod" id="amRadioForToTime" value="AM"> AM
+                    </label>
+                    <label>
+                        <input type="radio" name="ToTimePeriod" id="amRadioForToTime" value="PM"> PM
+                    </label>
+                    <br />
+                    @Html.ValidationMessageFor(x => x.ToTimePeriod)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-info">Allocate</button>
+                </td>
+            </tr>
+
+        </table>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/jquery.timepicker.min.js"></script>
+    <script src="~/Scripts/AllocateClassRoom.js"></script>
+    <script src="~/Scripts/AllocateClassRoom&Timepicker.js"></script>
+
+
+
+</body>
+</html>
